@@ -471,15 +471,6 @@ function getJason(data, imp){
       "RecommendedValue": ""
     },
     {
-      "parent": "App",
-      "attribute": "ext",
-      "Required": 0,
-      "Visibility": 0,
-      "id": "App_ext",
-      "location": data?.['app']?.['ext'] ?? null,
-      "RecommendedValue": ""
-    },
-    {
       "parent": "Device",
       "attribute": "ifa",
       "Required": 1,
