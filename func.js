@@ -163,7 +163,7 @@ function addRequest(){
     const div = document.createElement("div");
     div.classList.add("col");
     div.innerHTML = `
-        <h4>Request ${requestInputCount}</h4>
+        <input id="requestName" type="text" value="Request ${requestInputCount}">
         <textarea id="jsonInput" rows="4" placeholder="{
                 'id': '...',
                 'imp': [...], 
@@ -179,22 +179,23 @@ function addRequest(){
 
 function renderTableHead(validRequestCount){
     // update the table column
-    if (validRequestCount != 2){
-        const th = document.getElementById("table-head"); 
+    const th = document.getElementById("table-head"); 
 
-        let thHTML = `<th scope="col">Object</th>
-        <th scope="col">Attribute</th>`;
+    let thHTML = `<th scope="col">Object</th>
+    <th scope="col">Attribute</th>`;
 
-        for(let i = 1; i <= validRequestCount; i++){
-            thHTML += `<th scope="col">Present in Request ${i}? (Y/N)</th>`; 
-        }
+    //retrieve input name
+    let requestName = document.querySelectorAll("#requestName");
 
-        for(let i = 1; i <= validRequestCount; i++){
-            thHTML += `<th scope="col">Value in Request ${i}</th>`; 
-        }
-
-        th.innerHTML = thHTML;
+    for(let i = 0; i < validRequestCount; i++){
+        thHTML += `<th scope="col">Present in ${requestName[i].value}? (Y/N)</th>`; 
     }
+
+    for(let i = 0; i < validRequestCount; i++){
+        thHTML += `<th scope="col">Value in ${requestName[i].value}</th>`; 
+    }
+
+    th.innerHTML = thHTML;
 }
 
 function clearTableResults(){
