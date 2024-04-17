@@ -163,7 +163,7 @@ function addRequest(){
     const div = document.createElement("div");
     div.classList.add("col");
     div.innerHTML = `
-        <input id="requestName" type="text" value="Request ${requestInputCount}">
+        <div><input id="requestName" type="text" value="Request ${requestInputCount}"></div>
         <textarea id="jsonInput" rows="4" placeholder="{
                 'id': '...',
                 'imp': [...], 
