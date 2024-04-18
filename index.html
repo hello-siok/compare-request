@@ -22,6 +22,11 @@
                 <button type="button" class="btn btn-outline-dark btn-sm button" id="exportXlsButton">
                     Download Excel (.xls)
                 </button>
+
+                <div class="checkbox-container">
+                    <input type="checkbox" id="myCheckbox">
+                    <label for="myCheckbox" class="checkbox-description">Check Missing Attributes</label>
+                </div>
             </div>
         </div>
 
@@ -61,9 +66,9 @@
         <hr>
         <!--table to compare attribute presence vs absence -->
         <div>
-            <table class="table table-hover table-sm table-bordered">
+            <table class="table table-hover table-sm table-bordered" id="compare-table">
                 <thead>
-                  <tr class="table-secondary align-top table-group-divider" id="table-head">
+                  <tr class="table-secondary align-top table-group-divider" id="table-head-compare-request">
                     <th scope="col">Object</th>
                     <th scope="col">Attribute</th>
                     <th scope="col">Present in Request 1? (Y/N)</th>
@@ -77,21 +82,20 @@
             </table>
         </div>
 
-        <!--table to compare attribute value >
+        <!--table to show missing attrbiutes -->
         <div>
-            <table class="table table-hover table-sm table-bordered">
+            <table class="table table-hover table-sm table-bordered" id="missing-attribute-summary-table" style="display: none;">
                 <thead>
-                  <tr class="table-secondary align-top table-group-divider">
-                    <th scope="col">Object</th>
-                    <th scope="col">Attribute</th>
-                    <th scope="col">value in Request 1</th>
-                    <th scope="col">value in Request 2</th>
+                  <tr class="table-secondary align-top table-group-divider"  id="table-head-missing-attribute">
+                    <th scope="col"> </th>
+                    <th scope="col">Request 1</th>
+                    <th scope="col">Request 2</th>
                   </tr>
                 </thead>
-                <tbody id="result" class="table-group-divider">
+                <tbody id="missingAttribute-result" class="table-group-divider">
                 </tbody>
             </table>
-        </div-->
+        </div>
     </section>
 
     <script src="func.js"> </script>
@@ -118,6 +122,18 @@
                     filename: "attribute-check.xls" // Specify the desired file name.
                 });
             });
+        });
+
+        // change visiblity of the table
+        var checkbox = document.getElementById('myCheckbox');
+        var missingAttributeTable = document.getElementById('missing-attribute-summary-table');
+
+        checkbox.addEventListener('change', function() {
+            if (checkbox.checked) {
+                missingAttributeTable.style.display = 'table'; // Show the table
+            } else {
+                missingAttributeTable.style.display = 'none'; // Hide the table
+            }
         });
     </script>
 </body>
